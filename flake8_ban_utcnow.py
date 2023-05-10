@@ -30,6 +30,9 @@ class Visitor(ast.NodeVisitor):
 
 
 class Plugin:
+    name = "Ban utcnow()"
+    version = "0.2.0"
+
     def __init__(self, tree: ast.AST):
         self._tree = tree
 

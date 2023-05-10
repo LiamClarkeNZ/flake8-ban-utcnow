@@ -1,7 +1,6 @@
-[![ci](https://github.com/jkittner/flake8-ban-utcnow/workflows/ci/badge.svg)](https://github.com/jkittner/flake8-ban-utcnow/actions?query=workflow%3Aci)
-[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/jkittner/flake8-ban-utcnow/master.svg)](https://results.pre-commit.ci/latest/github/jkittner/flake8-ban-utcnow/master)
+# flake8-ban-utcnow-36
 
-# flake8-ban-utcnow
+_Forked from https://github.com/jkittner/flake8-ban-utcnow to run under Python 3.6_
 
 flake8 plugin which checks that `datetime.utcnow()` is not used. It suggests using `datetime.now(timezone.utc)` instead.
 

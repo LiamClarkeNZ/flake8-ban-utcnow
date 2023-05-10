@@ -1,9 +1,5 @@
 import ast
-from typing import Any
-from typing import Generator
-from typing import List
-from typing import Tuple
-from typing import Type
+from typing import Any, Generator, List, Tuple, Type
 
 MSG = "UTC001 don't use datetime.utcnow(), use datetime.now(timezone.utc) instead"  # noqa: E501
 
@@ -13,22 +9,20 @@ class Visitor(ast.NodeVisitor):
         self.assignments: List[Tuple[int, int]] = []
 
     def visit_Call(self, node: ast.Call) -> None:
-        if isinstance(node.func, ast.Name) and node.func.id == 'utcnow':
+        if isinstance(node.func, ast.Name) and node.func.id == "utcnow":
             self.assignments.append((node.lineno, node.col_offset))
 
         self.generic_visit(node)
 
     def visit_Attribute(self, node: ast.Attribute) -> None:
         if (
-            (
-                isinstance(node.value, ast.Attribute) and
-                node.attr == 'utcnow' and
-                node.value.attr == 'datetime'
-            ) or (
-                isinstance(node.value, ast.Name) and
-                node.attr == 'utcnow' and
-                node.value.id == 'datetime'
-            )
+            isinstance(node.value, ast.Attribute)
+            and node.attr == "utcnow"
+            and node.value.attr == "datetime"
+        ) or (
+            isinstance(node.value, ast.Name)
+            and node.attr == "utcnow"
+            and node.value.id == "datetime"
         ):
             self.assignments.append((node.lineno, node.col_offset))
 
